@@ -8,19 +8,6 @@ DATADIR=mysql-data
 all:
 .PHONY: all
 
-setup:
-#	test -d $(HTMLDIR) || mkdir $(HTMLDIR)
-	test -d $(DATADIR) || mkdir $(DATADIR)
-	chmod a+w $(DATADIR)
-	chmod a+r $(DATADIR)
-#	test -d $(ERRORSDIR) || mkdir $(ERRORSDIR)
-#	chmod a+w $(ERRORSDIR)
-
-clean:
-	docker-compose down -v
-	rm -fr $(DATADIR)
-#	rm -fr $(ERRORSDIR)
-
 create-certs:
 # Add subdomains under SSL_DNS
 	docker run -v /tmp/certs:/certs \
