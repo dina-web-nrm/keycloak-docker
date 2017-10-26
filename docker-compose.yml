@@ -12,7 +12,6 @@ services:
         # Note that if you change user/password env variables, they won't be taken into account on restart, unless you first delete the local data directory: "none of the variables below will have any effect if you start the container with a data directory that already contains a database: any pre-existing database will always be left untouched on container startup." ...and the pre-existing database is persisted on the host.
         env_file: ./env/.env-mysql
         volumes:
-#            - ./mysql-data:/var/lib/mysql # Old way, requires setting up the directory
 #            - ./mysqldump:/docker-entrypoint-initdb.d # Directory to load sql files from. Remember to create this dir first.
             - mysql-keycloak-accounts:/var/lib/mysql
           
@@ -32,20 +31,14 @@ services:
             # proxy address forwarding, needed when running Keycloak behind a proxy
             - PROXY_ADDRESS_FORWARDING=true
             - TZ=Europe/Stockholm
-            #- MYSQL_PORT_3306_TCP_ADDR=db # ??
-            #- MYSQL_PORT_3306_TCP_PORT=3306 # ??
 
             # URL for proxy server
             - VIRTUAL_HOST=keycloak.accounts.dina-web.local
-#            - CERT_NAME=dina-web.local
-#            - VIRTUAL_PROTO=https
-#            - VIRTUAL_PORT=443
         ports:
             - 8080:8080
         volumes:
             - ./keycloak/configuration/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
             - ./keycloak/themes/dina:/opt/jboss/keycloak/themes/dina
-            #- ./keycloak/themes/keycloak_logo.png:/opt/jboss/keycloak/themes/welcome/resources/keycloak_logo.png
         depends_on:
             - mysql
 
@@ -65,8 +58,7 @@ services:
         # Note that nginx-proxy container caches the certificates, so changing them after they have been loaded has no effect, unless container is deleted and recreated.
         volumes:
             - /var/run/docker.sock:/tmp/docker.sock:ro
-#            - ./certs:/etc/nginx/certs
-            - /home/mikko/code/keycloak-docker/certs:/etc/nginx/certs
+            - ./certs:/etc/nginx/certs
 
 volumes:
     mysql-keycloak-accounts:
