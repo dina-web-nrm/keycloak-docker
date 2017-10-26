@@ -1,0 +1,49 @@
+
+/*@import 'admin-styles-slave.css';*/
+
+.navbar-default .navbar-brand {
+    background: center center no-repeat url("../img/logo-170.png");
+    height: 65px;
+    width: 180px;
+    display: block;
+}
+
+
+.navbar-pf {
+    border-top: 3px solid green;
+}
+
+
+
+body {
+    background-color: #ecf0f1;
+}
+
+.navbar {
+    background-color: #fff;
+    color: #000 !important;
+}
+
+.navbar-pf .navbar-utility > li > a {
+    color: #1e8c45 !important;
+    border-left: 1px solid #fff;
+    font-size: 14px;
+}
+
+.navbar-pf .navbar-utility > .open > a {
+    background-color: #ecf0f1;
+    border-left: 1px solid #fff;
+}
+    
+.navbar-pf .navbar-header {
+    border-bottom: 1px solid #fff;
+}
+
+.navbar a,
+.navbar a:link,
+.navbar a:active,
+.navbar a:visited,
+.navbar a:hover
+{
+    color: #000;
+}

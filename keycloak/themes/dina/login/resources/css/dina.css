@@ -1,0 +1,168 @@
+
+/* MAIN DINA CSS SETTINGS GO HERE */
+
+body {
+    background-color: #ecf0f1;
+    font-family: "Open sans", Helvetica, Arial, sans-serif;
+    font-size: 14pt;
+}
+
+#kc-logo {
+    display: none;
+}
+
+
+#kc-header {
+    margin: -10px -10px 0 -10px;
+    padding: 20px 40px;
+    background-color: #fff;
+}
+
+#kc-header-wrapper {/*Content of this is customizable through Keycloak admin console*/
+    background: top left no-repeat url("../img/logo-170.png");
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    padding-left: 190px;
+    margin-left: 10px;
+}
+
+.kc-logo-text span { /*This is customizable through Keycloak admin console*/
+/*    display: none;*/
+    margin-left: 200px;
+    font-size: 24pt;
+    position: relative;
+    top: 5px;
+}
+    
+#kc-content {
+    padding: 20px 40px;
+    line-height: 140%;
+
+}
+
+.navbar-main ul.navbar-utility  {/*Sign out etc*/
+    list-style-type: none;
+    float: right;
+    position: absolute;
+    top: 0;
+    margin-left: 0;
+    padding-left: 0;
+    right: 40px;
+}
+
+.navbar-main ul.navbar-utility li  {
+    float: left;
+    margin-left: 0.3em;
+}
+
+.navbar-main ul.navbar-utility li::after {
+    content: " |";    
+}
+
+/*Sign out*/
+.navbar-main ul.navbar-utility li:last-child {
+    font-weight: bold;
+}
+
+.navbar-main ul.navbar-utility li:last-child::after {
+    content: "";
+}
+
+.alert {
+    color: #fff;
+    padding: 5px;
+    background-color: #f96c46;
+    border: 2px solid #f96c46;
+}
+
+.alert-warning {
+    color: #fff;
+    padding: 5px;
+    background-color: #f96c46;
+    border: 2px solid #f96c46;
+}
+
+.alert-success {
+    color: #fff;
+    padding: 5px;
+    background-color: #1e8c45;
+    border: 2px solid #1e8c45;
+}
+
+#kc-form-options { /*forgot password -link*/
+}
+
+.form-group {
+    margin-top: 0.5em;
+}
+
+#kc-info {
+    padding: 10px;
+    background-color: #fff;
+    margin: 1em -10px 1em -10px;
+    font-weight: bold;
+}
+
+a:link {
+    color: #1e8c45;
+}
+
+a:visited {
+    color: #0f5a33;
+}
+
+.btn {
+    margin-top: 0.5em;
+    padding: 10px;
+    font-size: 14pt;
+}
+
+/*DINA green*/
+.btn-primary {
+    background-color: #1e8c45;
+    color: white;
+    border: 1px solid #1e8c45;
+}
+/*Bright blue*/
+/*
+.btn-primary {
+    background-color: #0000FF;
+    color: white;
+    border: 1px solid #0000CC;
+}
+*/
+.btn-default {
+    background-color: #F96C46;
+    color: white;
+    border: 1px solid #C63913;
+    margin-left: 2em;
+}
+
+
+.required {
+    color: red;
+    font-weight: bold;
+}
+
+table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+table thead td {
+    background-color: #fafafa;
+    border-bottom: 5px solid #ddd;
+}
+
+.bs-sidebar a,
+.navbar a {
+    text-decoration: none !important;
+}

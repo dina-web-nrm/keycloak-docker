@@ -1,0 +1,47 @@
+
+/* IMPORT MAIN DINA CSS FROM LOGIN THEME: */
+
+@import '../../../login/dina/css/dina.css'; /* Note that the dir path is rewritten (?) by the server (resources -> dina) */
+
+
+
+.navbar-title {
+    display: none;
+}
+
+.navbar-main {/*header bar*/
+    background-color: #fff;
+    padding: 10px;
+    margin: -10px -10px 10px -10px;
+}
+.navbar-header {
+    background: top left no-repeat url("../img/logo-170.png");
+    height: 45px;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.container {
+    margin: -10px;
+}
+
+.container .bs-sidebar { /*main navi*/
+    background-color: #fff;
+    padding: 10px;
+    margin: 0 -10px 0, -10px;
+    height: 30px;
+}
+
+.container .bs-sidebar ul { /*main navi list*/
+    list-style-type: none;    
+    margin: 0;
+}
+.container .bs-sidebar ul li {
+    float: left;
+    margin: 0 1em 0 0;
+}
+
+.content-area {
+    padding: 10px 50px;
+}
+
