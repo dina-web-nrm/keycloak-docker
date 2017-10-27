@@ -1,12 +1,5 @@
 
-# TODO
-
-- SSL, including enabling it on dina realm
-- CORS
-- i18n
-- Export keycloak basic settings as dump
-- Organize CSS better
-- 2017-10-24T14:20:31.877149Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1949304ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+Keycloak docker-compose setup with MySQL database and nginx reverse proxy.
 
 # Notes
 
@@ -27,30 +20,49 @@
 
 ## Keycloak settings 
 
+
+### dina realm
+
+Export / import dealm and client settings, see `keycloak/realm-export.json`
+
 Create a realm "dina" and enable it. Settings for the realm:
 
-- http://localhost:8080/auth/admin/master/console/#/realms/dina/login-settings
+- General
    - Enable
       - User registration 
-      - Email as username 
       - Edit username 
       - Forgot password 
       - Remember Me 
       - Verify email 
       - Login with email 
-   - Set SSL as required
-- http://localhost:8080/auth/admin/master/console/#/realms/dina/smtp-settings
+   - Disable
+      - Email as username 
+   - Require SSL: all requests
+- Email
    - Set dmail settings here
-- http://localhost:8080/auth/admin/master/console/#/realms/dina/theme-settings
+- Themes
    - Select dina theme for all services where it it available
-- http://localhost:8080/auth/admin/master/console/#/realms/dina/roles
-   - Add role "dinaadmin"
 
-Create users
-- User to manage users within the dina realm:
-    - useradmin / pwd
-    - Add role mappings for Client role "realm-management": manage-user, query-users, view-users
+<!--
+Add roles:
+- Add role "dina-admin"
+-->
 
+Add groups:
+- Add group "dina-user-admin-group"
+    - Add role mappings for Client role "realm-management": manage-user, view-users
+
+Add users:
+- Add user "test-user" to manage users within the dina realm:
+    - Add credential password "pwd", Temporary: off
+    - Add user to group "dina-user-admin-group"
+
+### Users
+
+- Add user & password
+- Add a role to the user, connect role to dina-account-test
+
+### Keycloak settings
 
 For developing the themes, disable caching like so:
 
@@ -64,14 +76,13 @@ For production, ensable caching:
         <cacheThemes>true</cacheThemes>
         <cacheTemplates>true</cacheTemplates>
 
+# TODO
 
-## SSL
-
-    -e SSL_EXPIRE=365 \
-    -e CA_EXPIRE=365 \
-
-# JS
-
-create client, access type public
-configure valid redirect URIs and valid web origins
+- i18n
+- Export keycloak basic settings as dump / json?
+- Organize CSS better
+- Error message: 2017-10-24T14:20:31.877149Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1949304ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
+- Add params to certs?
+   -e SSL_EXPIRE=365 \
+   -e CA_EXPIRE=365 \
 
