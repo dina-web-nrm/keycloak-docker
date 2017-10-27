@@ -1,1 +1,16 @@
-<h1>Login test implementation</h1>
+<html>
+<head>
+<script src="https://keycloak.accounts.dina-web.local/auth/js/keycloak.js"></script>
+<script>
+    var keycloak = Keycloak();
+    keycloak.init({ onLoad: 'login-required' }).success(function(authenticated) {
+        alert(authenticated ? 'authenticated' : 'not authenticated');
+    }).error(function() {
+        alert('failed to initialize');
+    });
+</script>
+</head>
+<body>
+        <h1>Login test implementation</h1>        
+</body>
+</html>
