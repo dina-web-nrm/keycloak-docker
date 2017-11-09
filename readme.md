@@ -118,14 +118,9 @@ For production, ensable caching:
 
 # TODO
 
-- Try Keycloak 3.0.0 - does this version have the bugs described above?
-- Make sure database/settings are preserved
-- Test realm import more
-- i18n
-- Export keycloak basic settings as dump / json?
+- Should we try Keycloak 3.0.0 - does this version have the bugs described above?
+- Make sure database/settings are preserved; Virtualbox crashing wiped the database with current setup
+- Do we need to enable i18n yet?
+- Try out importing Keycloak settings from JSON file - last import failed.
+- Should MySQL settings be tweaked due to this error message: 2017-10-24T14:20:31.877149Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1949304ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
 - Organize CSS better
-- Error message: 2017-10-24T14:20:31.877149Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1949304ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
-- Add params to certs?
-   -e SSL_EXPIRE=365 \
-   -e CA_EXPIRE=365 \
-
