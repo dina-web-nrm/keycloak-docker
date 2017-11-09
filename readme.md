@@ -15,6 +15,7 @@ Keycloak docker-compose setup with
 
 ## For local development
 
+- Set up env file
 - Add these urls to `/etc/hosts`:
    - `accounts.dina-web.local keycloak.accounts.dina-web.local`
 - Create certs using `make create-certs`. Import the generated self-signed certificate authority file `ca.pem` to your browser
@@ -27,6 +28,7 @@ Keycloak docker-compose setup with
 
 # For centralized instance
 
+- Set up env file
 - Add URL(s) to docker-compose.yml
 - Setup proxy, remove local proxy from docker-compose.yml
 - Start the services with `docker-compose up`
@@ -120,6 +122,7 @@ For production, ensable caching:
 
 - Try Keycloak 3.0.0 - does this version have the bugs described above?
 - Make sure database/settings are preserved
+    - Strange problem: start docker-compose, setup Keycloak using admin console, let it run for 8 hours, export database -> empty database with no tables. Keycloak UI shows data as normal. docker-compose down and up -> dina realm is missing fom Keycloak UI. Why? Windows sleep + virtualbox messing somethinh up??
 - Test realm import more
 - i18n
 - Export keycloak basic settings as dump / json?
