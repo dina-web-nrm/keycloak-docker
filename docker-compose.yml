@@ -4,7 +4,7 @@ services:
 
     mysql:
         image: mysql:5.7
-        container_name: mysql
+        container_name: keycloak-mysql
         env_file: ./env/.env-mysql
         volumes:
             #- ./mysqldump:/docker-entrypoint-initdb.d # Directory to load sql files from. Remember to create this dir first.
