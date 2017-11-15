@@ -6,7 +6,7 @@ services:
         image: mysql:5.7
         env_file: ./env/.env-mysql
         volumes:
-#            - ./mysqldump:/docker-entrypoint-initdb.d # Directory to load sql files from. Remember to create this dir first.
+            #- ./mysqldump:/docker-entrypoint-initdb.d # Directory to load sql files from. Remember to create this dir first.
             - mysql-keycloak-accounts:/var/lib/mysql
           
     keycloak:
@@ -15,7 +15,7 @@ services:
             - mysql:mysql # No need for this??
 
         # Username & password to use the database
-        env_file: ./env/.env-mysql
+        env_file: ./env/.env-keycloak
 
         environment:
             # Select database

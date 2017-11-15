@@ -11,6 +11,14 @@ Keycloak docker-compose setup with
 - Modifying the **admin console theme** styles is somewhat difficult, because that requires creating a new theme, which in turn prevents some css from loading. Documentation is not comprehensive on this issue. Including these styles will make user management components work: `node_modules/select2/select2.css css/styles.css`. Modifying login and account themes work fine.
 - nginx-proxy container caches the certificates, so changing them after they have been loaded has no effect, unless container is deleted and recreated. (WARNING: Service "nginx-proxy" is using volume "/etc/nginx/certs" from the previous container. Host mapping "NNN" has no...). Is this normal Docker or nginx-proxy behavior?
 
+# URLs used
+
+## locally
+* https://keycloak.accounts.dina-web.local
+* https://accounts.dina-web.local/ (for testing)
+
+
+
 # Setup
 
 ## For local development
