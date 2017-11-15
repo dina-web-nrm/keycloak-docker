@@ -1,4 +1,5 @@
 realm-export.json
+keycloak/realm-export.json
 env/.env-mysql
 certs/
 

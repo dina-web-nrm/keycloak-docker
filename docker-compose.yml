@@ -1,8 +1,4 @@
-
-
-# Use root/example as user/password credentials
 version: '3.1'
-
 
 services:
 
@@ -16,7 +12,7 @@ services:
     keycloak:
         image: jboss/keycloak:3.2.1.Final #this is the latest
         links:
-            - mysql:mysql # need for this??
+            - mysql:mysql # No need for this??
 
         # Username & password to use the database
         env_file: ./env/.env-mysql
@@ -24,12 +20,9 @@ services:
         environment:
             # Select database
             - DB_VENDOR=MYSQL
-            # Log level
-            #- KEYCLOAK_LOGLEVEL=DEBUG
             # proxy address forwarding, needed when running Keycloak behind a proxy
             - PROXY_ADDRESS_FORWARDING=true
             - TZ=Europe/Stockholm
-
             # URL for proxy server
             - VIRTUAL_HOST=keycloak.accounts.dina-web.local
         ports:
@@ -40,6 +33,7 @@ services:
         depends_on:
             - mysql
 
+
     ui: # a proof-of-concept
         image: nginx:1.12.1
         volumes: 
@@ -47,13 +41,22 @@ services:
         environment:
             - VIRTUAL_HOST=accounts.dina-web.local
 
+#    demo-client:
+#        image: nginx:1.12.1
+#        volumes: 
+#            - ./html:/usr/share/nginx/html:ro
+#        environment:
+#            - VIRTUAL_HOST=accounts.dina-web.local
+
+
     proxy:
         image: jwilder/nginx-proxy:alpine
         ports:
             - 80:80
             - 443:443
 
-        # Note that nginx-proxy container caches the certificates, so changing them after they have been loaded has no effect, unless container is deleted and recreated.
+        # Note that nginx-proxy container caches the certificates, 
+        # so changing them after they have been loaded has no effect, unless container is deleted and recreated.
         volumes:
             - /var/run/docker.sock:/tmp/docker.sock:ro
             - ./certs:/etc/nginx/certs
