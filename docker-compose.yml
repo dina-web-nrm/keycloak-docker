@@ -4,6 +4,7 @@ services:
 
     mysql:
         image: mysql:5.7
+        container_name: mysql
         env_file: ./env/.env-mysql
         volumes:
             #- ./mysqldump:/docker-entrypoint-initdb.d # Directory to load sql files from. Remember to create this dir first.
@@ -11,6 +12,7 @@ services:
           
     keycloak:
         image: jboss/keycloak:3.2.1.Final #this is the latest
+        container_name: keycloak
         links:
             - mysql:mysql # No need for this??
 
@@ -36,6 +38,7 @@ services:
 
     ui: # a proof-of-concept
         image: nginx:1.12.1
+        container_name: proof-of-concept
         volumes: 
             - ./html:/usr/share/nginx/html:ro
         environment:
@@ -48,7 +51,7 @@ services:
 #        environment:
 #            - VIRTUAL_HOST=accounts.dina-web.local
 
-
+    # for local installation, otherwise use a centralized proxy 
     proxy:
         image: jwilder/nginx-proxy:alpine
         ports:
