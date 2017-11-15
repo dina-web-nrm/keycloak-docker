@@ -16,7 +16,7 @@ services:
             - mysql-keycloak-accounts:/var/lib/mysql
           
     keycloak:
-        image: jboss/keycloak:3.2.1.Final
+        image: jboss/keycloak:3.2.1.Final #this is the latest
         links:
             - mysql:mysql # need for this??
 
@@ -42,7 +42,7 @@ services:
         depends_on:
             - mysql
 
-    ui:
+    ui: # a proof-of-concept
         image: nginx:1.12.1
         volumes: 
             - ./html:/usr/share/nginx/html:ro
