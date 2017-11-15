@@ -1,4 +1,7 @@
 realm-export.json
 env/.env-mysql
 certs/
+
+
 *~
+README.html
