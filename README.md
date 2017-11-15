@@ -1,7 +1,7 @@
 Keycloak docker-compose setup with
 - UI customized for DINA
 - MySQL database
-- nginx reverse proxy with self-signed certificates
+- nginx reverse proxy with self-signed certificates (locally)
 
 # Notes
 
@@ -23,12 +23,11 @@ Keycloak docker-compose setup with
 
 ## For local development
 
-- Set up env file
-- Add these urls to `/etc/hosts`:
-   - `accounts.dina-web.local keycloak.accounts.dina-web.local`
+- Set up the env-files ( `cp template.env-mysql .env-mysql` and `cp template.env-keycloak .env-keycloak`)
+- Add these two urls to `/etc/hosts`: `accounts.dina-web.local` and `keycloak.accounts.dina-web.local`
 - Create certs using `make create-certs`. Import the generated self-signed certificate authority file `ca.pem` to your browser
-- Start the services with `docker-compose up`
-- Set up Keycloak settings using the Admin console at https://keycloak.accounts.dina-web.local
+- Start the services with `make up`
+- Configure Keycloak using the Admin console at https://keycloak.accounts.dina-web.local
 - Access URLs:
    - Login to the dina realm at http://keycloak.accounts.dina-web.local/auth/realms/dina/account
    - Keycloak Admin Console: https://keycloak.accounts.dina-web.local
@@ -36,20 +35,21 @@ Keycloak docker-compose setup with
 
 # For centralized instance
 
-- Set up env file
+- Set up the env-files ( `cp template.env-mysql .env-mysql` and `cp template.env-keycloak .env-keycloak`)
 - Add URL(s) to docker-compose.yml
-- Setup proxy, remove local proxy from docker-compose.yml
-- Start the services with `docker-compose up`
-- Set up Keycloak settings using the Admin console at https://keycloak.accounts.dina-web.local
+- Use centralized proxy - remove the local proxy from the docker-compose.yml
+- Start the services with `make up`
+- Configure Keycloak using the Admin console at https://keycloak.accounts.dina-web.local
 - For better performance, enable theme caching (see below)
 
 # Keycloak settings 
 
-Keycloak has a tool to export/import realm settings, but that doesn't seem to work reliably. Example export is at keycloak/realm-export.json
+Keycloak has a tool to export/import realm settings, but that doesn't seem to work reliably. 
+Example export is at keycloak/realm-export.json
 
-Terms:
+**Terms:**
 
-- Realm: Entity that contains all settings for one project, in our case for all of DINA
+- Realm: an entity that contains all settings for one project, in our case for all of DINA
 - Client: an application that uses Keycloak for authentication. E.g. the collections management module
 
 ## Basic settings
