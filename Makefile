@@ -30,7 +30,7 @@ clean-certs: down
 	docker rm keycloakdocker_proxy_1 # Removes container which contains old certificates
 
 up:
-	@docker-compose up
+	@docker-compose up -d
 
 stop:
 	@docker-compose stop
