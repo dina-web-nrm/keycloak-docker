@@ -8,6 +8,7 @@ services:
         env_file: ./env/.env-mysql
         volumes:
             #- ./mysqldump:/docker-entrypoint-initdb.d # Directory to load sql files from. Remember to create this dir first.
+            - ./database-init.d:/docker-entrypoint-initdb.d
             - mysql-keycloak-accounts:/var/lib/mysql
           
     keycloak:
@@ -51,7 +52,6 @@ services:
 #        environment:
 #            - VIRTUAL_HOST=accounts.dina-web.local
 
-    # for local installation, otherwise use a centralized proxy 
     proxy:
         image: jwilder/nginx-proxy:alpine
         ports:
