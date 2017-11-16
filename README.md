@@ -67,14 +67,14 @@ Create a realm "dina" and enable it. Settings for the realm:
       - Verify email 
       - Login with email 
    - Disable
-      - Email as username 
+      - Email as username (due to bug in Keycloak, see above)
    - Require SSL: all requests
 - Email
    - Set dmail settings here
 - Themes
    - Select dina theme for all services where it it available
 
-This also automatically creates client "account", which is used for mnaging user's own information on Keycloak.
+This also automatically creates client "account", which is used for managing user's own information on Keycloak.
 
 ## Users
 
@@ -87,7 +87,6 @@ For each new user:
 - Add role mapping:
     - client role: account (this enables user to login and edit their own info)
     - assigned roles: manage-account, view-profile
-- **CHECK?** Add a role to the user, connect role to dina-account-test
 
 ## Client
 
@@ -102,6 +101,7 @@ Docker-compose file has a **demo-ui** demonstrating frontent application authent
     - Valid redirect URI's: https://accounts.dina-web.local/*
     - Base URL: https://accounts.dina-web.local
     - Web Origins: * (stricter value should be ok also)
+- Add permissions for a user to the client
 - Access the demo at https://accounts.dina-web.local
 
 ## Possible additional settings later
@@ -130,11 +130,11 @@ For production, ensable caching:
 
 - Should we try Keycloak 3.0.0 - does this version have the bugs described above?
 - Make sure database/settings are preserved; Virtualbox crashing wiped the database with current setup
-    - Strange problem: start docker-compose, setup Keycloak using admin console, let it run for 8 hours, export database -> empty database with no tables. Keycloak UI shows data as normal. docker-compose down and up -> dina realm is missing fom Keycloak UI. Why? Windows sleep + virtualbox messing somethinh up??
-- Do we need to enable i18n yet?
+    - Strange problem: start docker-compose, setup Keycloak using admin console, let it run for 8 hours, export database -> empty database with no tables. Keycloak UI shows data as normal. docker-compose down and up -> dina realm is missing fom Keycloak UI. Why? Windows sleep + Virtualbox messing something up??
+- Enabling and setting up i18n later, for UI in Swedish.
 - Try out importing Keycloak settings from JSON file - last import failed.
-- Organize CSS better
+- Organize CSS better, hide Google Authenticator
 
 # GOTCHA
 
-Note that if you change user/password env variables, they won't be taken into account on restart, unless you first delete the local data directory: "none of the variables below will have any effect if you start the container with a data directory that already contains a database: any pre-existing database will always be left untouched on container startup." ...and the pre-existing database is persisted on the host.
+Note that if you change user/password env variables, they won't be taken into account on restart, unless you first remove the local MySQL data volume on the host: "none of the variables below will have any effect if you start the container with a data directory that already contains a database: any pre-existing database will always be left untouched on container startup."
