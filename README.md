@@ -133,7 +133,6 @@ For production, ensable caching:
     - Strange problem: start docker-compose, setup Keycloak using admin console, let it run for 8 hours, export database -> empty database with no tables. Keycloak UI shows data as normal. docker-compose down and up -> dina realm is missing fom Keycloak UI. Why? Windows sleep + virtualbox messing somethinh up??
 - Do we need to enable i18n yet?
 - Try out importing Keycloak settings from JSON file - last import failed.
-- Should MySQL settings be tweaked due to this error message: 2017-10-24T14:20:31.877149Z 0 [Note] InnoDB: page_cleaner: 1000ms intended loop took 1949304ms. The settings might not be optimal. (flushed=0 and evicted=0, during the time.)
 - Organize CSS better
 
 # GOTCHA
