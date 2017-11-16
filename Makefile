@@ -1,9 +1,10 @@
 #!make
 
-#PWD=$(shell pwd)
-#HTMLDIR=html
+PWD=$(shell pwd)
 DATADIR=mysql-data
+VOLUME=keycloakdocker_mysql-keycloak-accounts
 #ERRORSDIR=errors
+#HTMLDIR=html
 
 all: up
 
@@ -29,8 +30,11 @@ clean-certs: down
 	sudo rm -fr /tmp/certs
 	docker rm keycloakdocker_proxy_1 # Removes container which contains old certificates
 
-up:
-	@docker-compose up -d
+up-prod:
+	@docker-compose -f docker-compose.yml up -d
+
+up-dev:
+	@docker-compose -f docker-compose.yml.local up -d
 
 stop:
 	@docker-compose stop
@@ -42,4 +46,6 @@ down:
 
 
 logs:
+	@docker volume ls | grep mysql-keycloak-accounts
+	sleep 2;
 	@docker-compose logs -f --tail=20
