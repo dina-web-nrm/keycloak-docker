@@ -26,7 +26,7 @@ services:
             - PROXY_ADDRESS_FORWARDING=true
             - TZ=Europe/Stockholm
             # URL for proxy server
-            - VIRTUAL_HOST=keycloak.accounts.dina-web.local
+            - VIRTUAL_HOST=alpha-keycloak.dina-web.net
         ports:
             - 8080:8080
         volumes:
@@ -36,13 +36,13 @@ services:
             - mysql
 
 
-    ui: # a proof-of-concept
-        image: nginx:1.12.1
-        container_name: proof-of-concept
-        volumes: 
-            - ./html:/usr/share/nginx/html:ro
-        environment:
-            - VIRTUAL_HOST=accounts.dina-web.local
+   # ui: # a proof-of-concept
+   #     image: nginx:1.12.1
+   #     container_name: proof-of-concept
+   #     volumes: 
+   #         - ./html:/usr/share/nginx/html:ro
+   #     environment:
+   #         - VIRTUAL_HOST=accounts.dina-web.local
 
 #    demo-client:
 #        image: nginx:1.12.1
@@ -51,18 +51,10 @@ services:
 #        environment:
 #            - VIRTUAL_HOST=accounts.dina-web.local
 
-    # for local installation, otherwise use a centralized proxy 
-    proxy:
-        image: jwilder/nginx-proxy:alpine
-        ports:
-            - 80:80
-            - 443:443
-
-        # Note that nginx-proxy container caches the certificates, 
-        # so changing them after they have been loaded has no effect, unless container is deleted and recreated.
-        volumes:
-            - /var/run/docker.sock:/tmp/docker.sock:ro
-            - ./certs:/etc/nginx/certs
+networks:
+  default:
+    external:
+      name: dwproxy_default
 
 volumes:
     mysql-keycloak-accounts:
