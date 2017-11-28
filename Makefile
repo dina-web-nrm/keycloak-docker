@@ -39,11 +39,13 @@ up-dev:
 stop:
 	@docker-compose stop
 
-rm:
+rm-volume:
+	@docker volume rm keycloakdocker_mysql-keycloak-accounts
 
 down:
-	@docker-compose down
-
+	@echo ""
+	@echo "OBS Dont use 'docker-compose down' it will destroy your volumes"
+	@echo ""
 
 logs:
 	@docker volume ls | grep mysql-keycloak-accounts
