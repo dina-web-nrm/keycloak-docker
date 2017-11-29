@@ -30,6 +30,9 @@ clean-certs: down
 	sudo rm -fr /tmp/certs
 	docker rm keycloakdocker_proxy_1 # Removes container which contains old certificates
 
+up:
+	@docker-compose up -d
+
 up-prod:
 	@docker-compose -f docker-compose.yml up -d
 
@@ -39,11 +42,13 @@ up-dev:
 stop:
 	@docker-compose stop
 
-rm:
+rm-volume:
+	@docker volume rm keycloakdocker_mysql-keycloak-accounts
 
 down:
-	@docker-compose down
-
+	@echo ""
+	@echo "OBS Dont use 'docker-compose down' it will destroy your volumes"
+	@echo ""
 
 logs:
 	@docker volume ls | grep mysql-keycloak-accounts
