@@ -25,7 +25,8 @@ Keycloak docker-compose setup with
 
 - Set up the env-files ( `cp template.env-mysql .env-mysql` and `cp template.env-keycloak .env-keycloak`)
 - Add these two urls to `/etc/hosts`: `accounts.dina-web.local` and `keycloak.accounts.dina-web.local`
-- Create certs using `make create-certs`. Import the generated self-signed certificate authority file `ca.pem` to your browser
+- Create certs using `make create-certs`. 
+- Import the generated self-signed certificate authority file `/tmp/ca.pem` to your browser, e.g. by using instructions at https://thomas-leister.de/en/how-to-import-ca-root-certificate
 - Start the services with `make up`
 - Configure Keycloak using the Admin console at https://keycloak.accounts.dina-web.local
 - Access URLs:
@@ -33,7 +34,7 @@ Keycloak docker-compose setup with
    - Keycloak Admin Console: https://keycloak.accounts.dina-web.local
    - Demonstration UI with nginx and JavaScript: https://accounts.dina-web.local
 
-# For centralized instance
+## For centralized instance
 
 - Set up the env-files ( `cp template.env-mysql .env-mysql` and `cp template.env-keycloak .env-keycloak`)
 - Add URL(s) to docker-compose.yml
