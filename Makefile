@@ -39,6 +39,9 @@ up-prod:
 up-dev:
 	@docker-compose -f docker-compose.yml.local up -d
 
+up-no-proxy:
+	@docker-compose -f docker-compose.local-no-proxy.yaml up -d
+
 stop:
 	@docker-compose stop
 
